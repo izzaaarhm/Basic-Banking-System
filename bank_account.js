@@ -10,7 +10,7 @@ class BankAccount {
             this.balance += amount;
             return this.balance;
         }else {
-            throw new Error("Nominal yang dimasukkan harus positif dan lebih dari 0!");
+            console.log('Error! Nominal yang dimasukkan harus positif dan lebih dari 0!');
         }
         
     }
@@ -20,7 +20,7 @@ class BankAccount {
             this.balance -= amount;
             return this.balance;
         } else {
-            throw new Error('Saldo tidak cukup! :(');
+            console.log('Error! Saldo tidak cukup. :(');
         }
     }
 }
