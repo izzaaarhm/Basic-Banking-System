@@ -16,7 +16,7 @@ let account = new BankAccount(2207421050, 'Wonwoo', 500);
 function depositProcess(account) {
     return new Promise(async (resolve, reject) => {
             try {
-                let depositAmount = parseFloat(await question(`Masukkan nominal uang yang ingin di deposit: `));
+                let depositAmount = parseFloat(await question(`Masukkan nominal uang yang ingin dideposit: `));
                 if (isNaN(depositAmount)) {
                     throw new Error("Nominal invalid!");
 
@@ -26,7 +26,32 @@ function depositProcess(account) {
                     setTimeout(() => {
                         account.deposit(depositAmount);
 
-                        console.log(`Rp${depositAmount} telah ditambahkan ke rekening Anda. Saldo Akhir: Rp${account.balance}`);
+                        console.log(`Rp${depositAmount} berhasil ditambahkan ke rekening Anda. Saldo Akhir: Rp${account.balance}`);
+                        resolve(account.balance);
+                    }, 2000);
+                }
+
+            } catch (error) {
+                reject(`Transaksi Eror pada akun dengan nomor ${account.accountNumber} (a.n. ${account.holderName}): ${error.message}`);
+            }
+        
+    })
+}
+
+function withdrawProcess(account) {
+    return new Promise(async (resolve, reject) => {
+            try {
+                let withdrawAmount = parseFloat(await question(`Masukkan nominal uang yang ingin ditarik: `));
+                if (isNaN(withdrawAmount)) {
+                    throw new Error("Nominal invalid!");
+
+                }else {
+                    console.log(`\nMenarik saldo sebesar Rp${withdrawAmount} pada rekening milik ${account.holderName} ~\n`);
+                    
+                    setTimeout(() => {
+                        account.withdraw(withdrawAmount);
+
+                        console.log(`Rp${withdrawAmount} berhasil diambil dari rekening Anda. Saldo Akhir: Rp${account.balance}`);
                         resolve(account.balance);
                     }, 2000);
                 }
@@ -47,6 +72,8 @@ async function main() {
                 console.log(`Saldo Anda saat ini: Rp${account.balance}`);
             } else if (pilihMenu == 2) {
                 await depositProcess(account);
+            } else if (pilihMenu == 3) {
+                await withdrawProcess(account);
             } else {
                 console.log('Input tidak valid!');
             }
