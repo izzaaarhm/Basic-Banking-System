@@ -34,7 +34,6 @@ function depositProcess(account) {
             } catch (error) {
                 reject(`Transaksi Eror pada akun dengan nomor ${account.accountNumber} (a.n. ${account.holderName}): ${error.message}`);
             }
-        
     })
 }
 
@@ -59,7 +58,6 @@ function withdrawProcess(account) {
             } catch (error) {
                 reject(`Transaksi Eror pada akun dengan nomor ${account.accountNumber} (a.n. ${account.holderName}): ${error.message}`);
             }
-        
     })
 }
 
@@ -87,7 +85,7 @@ async function main() {
                 i = false;
             }
         }      
-        
+
     } catch (error) {
         console.error(error.message);
     }
