@@ -23,5 +23,6 @@ class BankAccount {
             console.log('Error! Saldo tidak cukup. :(');
         }
     }
+    
 }
 module.exports = BankAccount;
