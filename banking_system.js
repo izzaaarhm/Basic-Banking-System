@@ -16,19 +16,27 @@ let account = new BankAccount(2207421050, 'Wonwoo', 500);
 function depositProcess(account) {
     return new Promise(async (resolve, reject) => {
             try {
-                let depositAmount = parseFloat(await question(`Masukkan nominal uang yang ingin dideposit: `));
-                if (isNaN(depositAmount)) {
-                    throw new Error("Nominal invalid!");
+                let j = true;
 
-                }else {
-                    console.log(`\nMenambahkan saldo sebesar Rp${depositAmount} pada rekening milik ${account.holderName} ~\n`);
+                while (j) {
+                    let depositAmount = parseFloat(await question(`Masukkan nominal uang yang ingin dideposit: `));
+                    if (isNaN(depositAmount)) {
+                        console.error('Nominal invalid!');
+
+                    } else if (depositAmount <= 0) {
+                        console.error('Error! Nominal yang dimasukkan harus lebih dari 0!\n');
+                        
+                    } else {
+                        j = false;
+                        console.log(`\nMenambahkan saldo sebesar Rp${depositAmount} pada rekening milik ${account.holderName} ~\n`);
                     
-                    setTimeout(() => {
-                        account.deposit(depositAmount);
+                        setTimeout(() => {
+                            account.deposit(depositAmount);
 
-                        console.log(`Rp${depositAmount} berhasil ditambahkan ke rekening Anda. Saldo Akhir: Rp${account.balance}`);
-                        resolve(account.balance);
-                    }, 2000);
+                            console.log(`Rp${depositAmount} berhasil ditambahkan ke rekening Anda. Saldo Akhir: Rp${account.balance}\n`);
+                            resolve(account.balance);
+                        }, 2000);
+                    }
                 }
 
             } catch (error) {
@@ -40,19 +48,27 @@ function depositProcess(account) {
 function withdrawProcess(account) {
     return new Promise(async (resolve, reject) => {
             try {
-                let withdrawAmount = parseFloat(await question(`Masukkan nominal uang yang ingin ditarik: `));
-                if (isNaN(withdrawAmount)) {
-                    throw new Error("Nominal invalid!");
+                let k = true;
 
-                }else {
-                    console.log(`\nMenarik saldo sebesar Rp${withdrawAmount} pada rekening milik ${account.holderName} ~\n`);
+                while (k) {
+                    let withdrawAmount = parseFloat(await question(`Masukkan nominal uang yang ingin ditarik: `));
+                    if (isNaN(withdrawAmount)) {
+                        console.error("Nominal invalid!\n");
+
+                    } else if (withdrawAmount > account.balance) {
+                        console.error(`Saldo tidak cukup. Saldo Anda: Rp${account.balance}\n`);
+
+                    } else {
+                        k = false;    
+                        console.log(`\nMenarik saldo sebesar Rp${withdrawAmount} pada rekening milik ${account.holderName} ~\n`);
                     
-                    setTimeout(() => {
-                        account.withdraw(withdrawAmount);
+                        setTimeout(() => {
+                            account.withdraw(withdrawAmount);
 
-                        console.log(`Rp${withdrawAmount} berhasil diambil dari rekening Anda. Saldo Akhir: Rp${account.balance}`);
-                        resolve(account.balance);
-                    }, 2000);
+                            console.log(`Rp${withdrawAmount} berhasil diambil dari rekening Anda. Saldo Akhir: Rp${account.balance}\n`);
+                            resolve(account.balance);
+                        }, 2000);
+                    }
                 }
 
             } catch (error) {
@@ -66,8 +82,8 @@ async function main() {
         let i = true;
 
         while (i) {
-            console.log('Selamat Datang! Silahkan pilih menu:\n 1. Cek saldo \n 2. Deposit \n 3. Tarik saldo');
-            let pilihMenu = parseInt(await question(`Pilihan Menu: `));
+            console.log('\nSelamat Datang! Pilihan menu:\n 1. Cek saldo \n 2. Deposit \n 3. Tarik saldo');
+            let pilihMenu = parseInt(await question(`Pilih Menu (masukkan nomor menu): `));
 
             if (pilihMenu == 1) {
                 console.log(`Saldo Anda saat ini: Rp${account.balance}`);
@@ -81,7 +97,7 @@ async function main() {
 
             let pilihLanjut = await question(`Ingin pilih menu lain? (y/n): `);
             if (pilihLanjut.toLowerCase() !== 'y') {
-                console.log('Terima Kasih!');
+                console.log('\nTerima Kasih!');
                 i = false;
             }
         }      
