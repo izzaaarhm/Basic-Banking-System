@@ -65,6 +65,9 @@ function withdrawProcess(account) {
 
 async function main() {
     try {
+        let i = true;
+
+        while (i) {
             console.log('Selamat Datang! Silahkan pilih menu:\n 1. Cek saldo \n 2. Deposit \n 3. Tarik saldo');
             let pilihMenu = parseInt(await question(`Pilihan Menu: `));
 
@@ -77,6 +80,14 @@ async function main() {
             } else {
                 console.log('Input tidak valid!');
             }
+
+            let pilihLanjut = await question(`Ingin pilih menu lain? (y/n): `);
+            if (pilihLanjut.toLowerCase() !== 'y') {
+                console.log('Terima Kasih!');
+                i = false;
+            }
+        }      
+        
     } catch (error) {
         console.error(error.message);
     }
