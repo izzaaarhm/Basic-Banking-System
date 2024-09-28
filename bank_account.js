@@ -15,5 +15,13 @@ class BankAccount {
         
     }
 
+    withdraw(amount) {
+        if (amount <= this.balance) {
+            this.balance -= amount;
+            console.log(`Saldo berhasil dikurangi. Saldo akhir: Rp${this.balance}`);
+        } else {
+            throw new Error('Saldo tidak cukup! :(');
+        }
+    }
 }
 module.exports = BankAccount;
