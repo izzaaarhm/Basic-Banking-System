@@ -24,6 +24,5 @@ BEGIN
         CURRENT_DATE,
         CURRENT_TIME);
 
-    COMMIT;
 END;
 $$;

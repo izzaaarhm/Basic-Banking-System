@@ -28,6 +28,5 @@ BEGIN
         RAISE EXCEPTION 'saldo tidak cukup!';
     END IF;
 
-    COMMIT;
 END;
 $$
