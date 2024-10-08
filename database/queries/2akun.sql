@@ -6,7 +6,7 @@ INSERT INTO akun (
   (1, 'tabungan', 0.00),
   (2, 'deposito', 5000.00),
   (1, 'deposito', 2000.00),
-  (3, 'deposito', 3000.00);
+  (3, 'deposito', 3000.00),
   (12, 'deposito', 1800.00),
   (3, 'tabungan', 4000.00),
   (7, 'deposito', 1500.00),

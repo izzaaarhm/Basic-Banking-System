@@ -6,7 +6,7 @@ INSERT INTO nasabah (
 ) VALUES
   ('John', 'Doe', '123 Apple St'),
   ('Bob', 'Barker', '456 Banana Ave'),
-  ('Charlie', 'Clark', '789 Cherry Blvd');
+  ('Charlie', 'Clark', '789 Cherry Blvd'),
   ('Alice', 'Anderson', '101 Cedar Lane'),
   ('Jane', 'Doe', '202 Birch Boulevard'),
   ('Alice', 'Smith', '303 Willow Drive'),
