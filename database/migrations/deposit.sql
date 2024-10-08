@@ -23,7 +23,5 @@ BEGIN
         amount,
         CURRENT_DATE,
         CURRENT_TIME);
-
-    COMMIT;
 END;
 $$;
